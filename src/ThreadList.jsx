@@ -18,7 +18,9 @@ function ThreadList() {
         <ul>
           {threads.map((thread) => (
             <li key={thread.id} className="thread-item">
-              {thread.title}
+              <Link to={`/threads/${thread.id}`}>
+                {thread.title}
+              </Link>
             </li>
           ))}
         </ul>
