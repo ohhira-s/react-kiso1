@@ -8,7 +8,10 @@ function App() {
   return (
     <div>
       <header>
-        <h1><Link to="/">掲示板</Link></h1>
+        <div className="header-inner">
+          <h1><Link to="/">掲示板</Link></h1>
+          <Link to="/threads/new">スレッドを新規作成する</Link>
+        </div>
       </header>
       <main>
         <Routes>

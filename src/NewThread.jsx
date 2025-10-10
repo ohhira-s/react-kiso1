@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function NewThread() {
   const [title, setTitle] = useState('');
@@ -23,15 +23,22 @@ function NewThread() {
   };
 
   return (
-    <div>
-      <h2>スレッドを新規作成</h2>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="スレッドのタイトル"
-      />
-      <button onClick={createThread}>作成</button>
+    <div className="new-thread-container">
+      <h2 className="page-title">スレッドを新規作成</h2>
+      
+      <div className="new-thread-form">
+        <input
+          className="form-input"
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="スレッドタイトル"
+        />
+        <div className="form-actions">
+          <Link to="/" className="back-link">Topに戻る</Link>
+          <button onClick={createThread} className="submit-button">作成</button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -12,10 +12,8 @@ function ThreadList() {
 
   return (
     <div>
-      <h2>新着スレッド</h2>
-      <Link to="/threads/new">スレッドを新規作成する</Link>
-      <div className="thread-list">
-        <ul>
+      <h2 className="page-title">新着スレッド</h2>
+       <ul className="thread-list">
           {threads.map((thread) => (
             <li key={thread.id} className="thread-item">
               <Link to={`/threads/${thread.id}`}>
@@ -24,7 +22,6 @@ function ThreadList() {
             </li>
           ))}
         </ul>
-      </div>
     </div>
   );
 }

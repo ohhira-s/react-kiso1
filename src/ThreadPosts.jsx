@@ -5,6 +5,7 @@ function ThreadPosts() {
   const [posts, setPosts] = useState([]);
   const [postContent, setPostContent] = useState('');
   const { thread_id } = useParams();
+  const [threadTitle, setThreadTitle] = useState('');
 
   const fetchPosts = () => {
     fetch(`https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts`)
@@ -14,6 +15,9 @@ function ThreadPosts() {
 
   useEffect(() => {
     fetchPosts();
+    fetch(`https://railway.bulletinboard.techtrain.dev/threads/${thread_id}`)
+      .then(response => response.json())
+      .then(data => setThreadTitle(data.title));
   }, [thread_id]);
 
   const createPost = () => {
@@ -38,16 +42,15 @@ function ThreadPosts() {
 
   return (
     <div>
-      <h2>投稿一覧</h2>
-      <div className="post-list">
-        <ul>
+      <h2 className="page-title">{threadTitle}</h2>
+      <div className="posts-container">
+        <ul className="post-list">
           {posts.map((post) => (
             <li key={post.id} className="post-item">
               {post.post}
             </li>
           ))}
         </ul>
-      </div>
       <div className="post-form">
         <textarea
           value={postContent}
@@ -55,6 +58,7 @@ function ThreadPosts() {
           placeholder="投稿内容"
         />
         <button onClick={createPost}>投稿</button>
+      </div>
       </div>
     </div>
   );
